@@ -1,3 +1,4 @@
+# At first, we need to install the required packages and load the MLB2016 dataset 
 install.packages("pinnacle.data")
 install.packages("odds.converter")
 
@@ -29,16 +30,16 @@ MLB2016 <- MLB2016 %>%
   select(-HomeStartingPicher)
 
 
-### Q1 ###
+# The final win percentage of the Chicago Cubs at the end of 2016
 homeWin <- nrow(MLB2016[MLB2016$HomeTeam == 'Chicago Cubs' & MLB2016$FinalScoreHome > MLB2016$FinalScoreAway, ])
 awayWin <- nrow(MLB2016[MLB2016$AwayTeam == 'Chicago Cubs' & MLB2016$FinalScoreHome < MLB2016$FinalScoreAway,])
 games <- nrow(MLB2016[MLB2016$HomeTeam == 'Chicago Cubs' | MLB2016$AwayTeam == 'Chicago Cubs',])
 games
 finalWinPrecentage <- (homeWin+awayWin)/games
 print(round(finalWinPrecentage*100,2))
-# Q1.a ??
 
-### Q2 ###
+
+# An object that counts the number of games each pitcher started and the number of wins
 PitchersHome <- unique(MLB2016$HomeStartingPitcher)
 PitchersAway <- unique(MLB2016$AwayStartingPitcher)
 Pitchers <- unique(append(PitchersHome, PitchersAway))
@@ -54,7 +55,9 @@ for(i in Pitchers){
 }
 df[order(df$Pitcher),]
 
-### Q3 ###
+'''Now, for each game we extract the first and last MoneyUS2 recorded that aren’t NA’s.
+Also, we create a binary column indicating if Home Team won or not.
+'''
 # x<- MLB2016[1,"Lines"]
 df<- data.frame(GameID = character(), First_MoneyUS2 = double(), Last_MoneyUS2=double(), WinHomeTeam=numeric())
 
@@ -66,8 +69,6 @@ for(i in 1:nrow(MLB2016)){
   df <- df %>% add_row(GameID = row$GameID, First_MoneyUS2 = first(na.omit(z)),
                        Last_MoneyUS2=last(na.omit(z)), WinHomeTeam=as.numeric(row$FinalScoreHome>row$FinalScoreAway))
 }
-df
-
 
 
 
