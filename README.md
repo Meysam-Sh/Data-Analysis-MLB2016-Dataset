@@ -1,4 +1,4 @@
-This a simple data analysis of MLB2016 dataset in R using the pinnacle.data package from CRAN. pinnacle.data contains a snapshot of odds over time in a subset of Pinnacle’s sports betting markets. The MLB2016 dataset is part of this package. I explore as follows by:
+This a simple data analysis of MLB2016 dataset in R using the pinnacle.data package from CRAN. pinnacle.data contains a snapshot of odds over time in a subset of Pinnacle’s sports betting markets. The MLB2016 dataset is part of this package. I explore the MLB2016 as follows by:
 
 1. computing the final win percentage of the Chicago Cubs at the end of 2016
 
